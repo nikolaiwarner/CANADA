@@ -7,8 +7,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.integer :location_id
-      t.bool :collexion_event
-
+      
       t.timestamps
     end
   end

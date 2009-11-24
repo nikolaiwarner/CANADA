@@ -1,0 +1,9 @@
+!!! 5
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+%head
+  %title= controller.action_name
+  = stylesheet_link_tag 'scaffold'
+%body
+  %p{:style => "color: green"}= flash[:notice]
+  %p= yield
+
