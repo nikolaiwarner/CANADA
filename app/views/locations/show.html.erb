@@ -1,0 +1,18 @@
+<p>
+  <b>Title:</b>
+  <%=h @location.title %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @location.address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @location.phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

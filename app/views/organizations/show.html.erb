@@ -1,0 +1,18 @@
+<p>
+  <b>Title:</b>
+  <%=h @organization.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @organization.description %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%=h @organization.link %>
+</p>
+
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

@@ -1,0 +1,28 @@
+<h1>Editing announcement</h1>
+
+<% form_for(@announcement) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :start_datetime %><br />
+    <%= f.datetime_select :start_datetime %>
+  </p>
+  <p>
+    <%= f.label :end_datetime %><br />
+    <%= f.datetime_select :end_datetime %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @announcement %> |
+<%= link_to 'Back', announcements_path %>

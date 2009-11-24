@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  start_datetime: 2009-11-23 23:21:36
+  end_datetime: 2009-11-23 23:21:36
+  title: MyString
+  description: MyText
+  location_id: 1
+  collexion_event: 
+
+two:
+  user_id: 1
+  start_datetime: 2009-11-23 23:21:36
+  end_datetime: 2009-11-23 23:21:36
+  title: MyString
+  description: MyText
+  location_id: 1
+  collexion_event: 

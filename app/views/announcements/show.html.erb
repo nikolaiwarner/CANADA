@@ -1,0 +1,23 @@
+<p>
+  <b>Title:</b>
+  <%=h @announcement.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @announcement.description %>
+</p>
+
+<p>
+  <b>Start datetime:</b>
+  <%=h @announcement.start_datetime %>
+</p>
+
+<p>
+  <b>End datetime:</b>
+  <%=h @announcement.end_datetime %>
+</p>
+
+
+<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
+<%= link_to 'Back', announcements_path %>
