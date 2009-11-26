@@ -4,16 +4,12 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
     <%= f.label :start_datetime %><br />
-    <%= f.datetime_select :start_datetime %>
+    <%= f.text_field :start_datetime, :class => "datepicker" %>
   </p>
   <p>
     <%= f.label :end_datetime %><br />
-    <%= f.datetime_select :end_datetime %>
+    <%= f.text_field :end_datetime, :class => "datepicker" %>
   </p>
   <p>
     <%= f.label :title %><br />

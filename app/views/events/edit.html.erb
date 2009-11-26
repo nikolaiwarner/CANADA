@@ -3,10 +3,7 @@
 <% form_for(@event) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
+
   <p>
     <%= f.label :start_datetime %><br />
     <%= f.datetime_select :start_datetime %>

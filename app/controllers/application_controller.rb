@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   layout 'application'
+  
+  
+	helper_method :administrator?
+	def administrator?
+		authenticate_or_request_with_http_basic do |username, password|
+      username == "foo" && password == "bar"
+    end
+	end
+  
 end

@@ -1,6 +1,9 @@
 class ResourcesController < ApplicationController
-  # GET /resources
-  # GET /resources.xml
+
+
+  before_filter :administrator?
+  after_filter :store_location
+
   def index
     @resources = Resource.all
 

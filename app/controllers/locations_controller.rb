@@ -1,6 +1,8 @@
 class LocationsController < ApplicationController
-  # GET /locations
-  # GET /locations.xml
+
+  before_filter :administrator?
+  after_filter :store_location
+
   def index
     @locations = Location.all
 

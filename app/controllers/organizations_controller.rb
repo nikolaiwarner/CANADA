@@ -1,6 +1,8 @@
 class OrganizationsController < ApplicationController
-  # GET /organizations
-  # GET /organizations.xml
+
+  before_filter :administrator?
+  after_filter :store_location
+
   def index
     @organizations = Organization.all
 

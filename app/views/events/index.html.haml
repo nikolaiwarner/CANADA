@@ -1,0 +1,13 @@
+%h1 Events
+
+- @events.each do |event|
+  %div= h event.start_datetime
+  %div= h event.end_datetime
+  %div= h event.title
+  %div= h event.description
+  %div= h event.location_id 
+  %div=  link_to 'Show', event
+  %div=  link_to 'Edit', edit_event_path(event)
+  %div=  link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
+
+= link_to 'New event', new_event_path

@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.xml
+
+  before_filter :administrator?
+  after_filter :store_location
+
+
   def index
     @events = Event.all
 
