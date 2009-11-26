@@ -1,26 +1,84 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
-
 set :git_enable_submodules, 1
 
 
+set :domain, ""   #the one you ssh into
+set :user, ""            #the user you created when setting up the domain (has to have shell access)
+set :application, ""          #the name of the folder you chose when setting up the domain
+set :applicationdir, "/home/#{user}/#{application}"  # The standard Dreamhost setup
+ 
+set :repository, "git@github.com:nikolaiwarner/CANADA.git"
+set :scm, :git
+ 
+# deploy config
+set :deploy_to, applicationdir       # Where on the server your app will be deployed
+set :deploy_via, :remote_cache
+ 
+# additional settings
+default_run_options[:pty] = true  # Forgo errors when deploying from windows
+#ssh_options[:keys] = %w(/Path/To/id_rsa)            # If you are using ssh_keys
+set :chmod755, "app config db lib public vendor script script/* public/disp*"
+set :use_sudo, false
+ 
+role :app, domain
+role :web, domain
+role :db,  domain, :primary => true
+ 
+#Passenger stop, start, and restart calls
+namespace :deploy do
+  desc "Restarting mod_rails with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+ 
+  [:start, :stop].each do |t|
+    desc "#{t} task is a no-op with mod_rails"
+    task t, :roles => :app do ; end
+  end
+end
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+# Database setup
+task :setup_production_database_configuration do
+  mysql_host = Capistrano::CLI.password_prompt("Production MySQL host: ")
+  mysql_database = Capistrano::CLI.password_prompt("Production MySQL database: ")
+  mysql_username = Capistrano::CLI.password_prompt("Production MySQL username: ")
+  mysql_password = Capistrano::CLI.password_prompt("Production MySQL password: ")
+  require 'yaml'
+  spec = { "production" => {
+   "adapter" => "mysql",
+   "host" =>     mysql_host,
+   "database" => mysql_database,
+   "username" => mysql_username,
+   "password" => mysql_password } }
+  run "mkdir -p #{shared_path}/config"
+  put(spec.to_yaml, "#{shared_path}/config/database.yml")
+end
+after "deploy:setup", :setup_production_database_configuration
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+task :copy_production_database_configuration do
+ run "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+end
+after "deploy:update_code", :copy_production_database_configuration
 
-# namespace :deploy do
-#   task :start {}
-#   task :stop {}
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+
+# App Config setup
+task :setup_appconfig_configuration do
+  appconfig_username = Capistrano::CLI.password_prompt("App Config Admin Username: ")
+  appconfig_password = Capistrano::CLI.password_prompt("App Config Admin Password: ")
+  require 'yaml'
+  spec = { "production" => {
+   "perform_authentication" => "true",
+   "username" =>  appconfig_username,
+   "password" =>  appconfig_password } }
+  run "mkdir -p #{shared_path}/config"
+  put(spec.to_yaml, "#{shared_path}/config/app_config.yml")
+end
+after "deploy:setup", :setup_appconfig_configuration
+
+task :copy_appconfig_configuration do
+ run "cp #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
+end
+after "deploy:update_code", :copy_appconfig_configuration
+
+
+
