@@ -2,7 +2,7 @@ class ResourcesController < ApplicationController
 
 
   before_filter :administrator?
-  after_filter :store_location
+
 
   def index
     @resources = Resource.all

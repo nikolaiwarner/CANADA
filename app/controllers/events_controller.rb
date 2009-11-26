@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   before_filter :administrator?
-  after_filter :store_location
+
 
 
   def index

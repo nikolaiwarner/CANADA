@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   before_filter :administrator?
-  after_filter :store_location
+
 
   def index
     @locations = Location.all

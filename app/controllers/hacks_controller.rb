@@ -1,6 +1,8 @@
 class HacksController < ApplicationController
-  # GET /hacks
-  # GET /hacks.xml
+
+  before_filter :administrator?
+
+
   def index
     @hacks = Hack.all
 

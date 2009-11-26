@@ -1,7 +1,6 @@
 class AnnouncementsController < ApplicationController
 
   before_filter :administrator?
-  after_filter :store_location
 
   # GET /announcements
   # GET /announcements.xml
