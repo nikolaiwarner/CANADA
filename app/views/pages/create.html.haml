@@ -1,0 +1,62 @@
+= form_tag("/send_newsletter", :method => "post") do
+  %input{:type => "submit", :value => "Send Newsletter Email"}
+  %br
+  %textarea{:rows => "40", :cols => "100", :name => "body"}
+    .section
+      .section_header
+        The Collexion Newsletter - 
+        = Date.today.to_s(:db)
+    .section
+      .section_header
+        EVENTS
+      .section_content
+        - @events.each do |event|
+          .item
+            = event.time_string + " <br/> " if event.time_string
+            = event.title
+            = "@ " + event.location.title + " (" + event.location.address + ")" if event.location
+            %br
+            = event.description
+      .section_header
+        Coming Soon:
+      .section_content
+        - @coming_events.each do |event|
+          .item
+            = event.title
+            = "@ " + event.location.title + " (" + event.location.address + ")" if event.location
+            = event.time_string if event.time_string
+    - unless @announcements.count.zero?
+      .section
+        .section_header
+          ANNOUNCEMENTS
+        .section_content
+          - @announcements.each_with_index do |announcement, i|
+            .item
+              = (i + 1).to_s + ") " + announcement.title
+              %br
+              = announcement.description
+    - unless @hacks.count.zero?
+      .section
+        .section_header
+          HACKS OF THE WEEK
+        .section_content
+          - @hacks.each do |hack|
+            .item
+              = hack.title
+              %br
+              = hack.description
+    - unless @resources.count.zero?
+      .section
+        .section_header
+          RESOURCES
+        .section_content
+          - @resources.each do |resource|
+            .item
+              = resource.title + ": " + resource.link
+              = " - " + resource.description if resource.description
+    .section
+      .section_header
+        QUESTIONS/COMMENTS/SUBMISSIONS
+      .section_content
+        .item
+          Have an announcement, event, idea, or hack to submit for the next newsletter? Email nick@nwarner.com

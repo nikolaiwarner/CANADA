@@ -64,3 +64,23 @@ a:hover { color: #fff; background-color:#000; }
 }
 
 
+.section {
+  margin: 10px;
+}
+
+.section_header {
+  font-weight: 900;
+  margin: 5px;
+}
+
+.section_content {
+  margin: 5px;
+}
+
+.item {
+  margin-bottom: 5px;
+}
+
+
+
+

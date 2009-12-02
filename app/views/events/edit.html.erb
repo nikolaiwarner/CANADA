@@ -6,11 +6,11 @@
 
   <p>
     <%= f.label :start_datetime %><br />
-    <%= f.datetime_select :start_datetime %>
+    <%= f.text_field :start_datetime, :class => "datepicker" %>
   </p>
   <p>
     <%= f.label :end_datetime %><br />
-    <%= f.datetime_select :end_datetime %>
+    <%= f.text_field :end_datetime, :class => "datepicker" %>
   </p>
   <p>
     <%= f.label :title %><br />
@@ -22,7 +22,7 @@
   </p>
   <p>
     <%= f.label :location_id %><br />
-    <%= f.text_field :location_id %>
+    <%= f.collection_select(:location_id, Location.all, :id, :title, {:include_blank => true}) %>
   </p>
   <p>
     <%= f.submit 'Update' %>

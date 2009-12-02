@@ -1,7 +1,3 @@
-<p>
-  <b>User:</b>
-  <%=h @event.user_id %>
-</p>
 
 <p>
   <b>Start datetime:</b>
@@ -25,7 +21,7 @@
 
 <p>
   <b>Location:</b>
-  <%=h @event.location_id %>
+  <%=h @event.location.title id @event.location %>
 </p>
 
 
