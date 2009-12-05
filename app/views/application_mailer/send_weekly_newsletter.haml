@@ -2,7 +2,15 @@
 %html
   %head
     %title Collexion Newsletter
-    = stylesheet_link_tag 'style'
-    %link{:rel => "shortcut icon", :href => "/favicon.ico"}
+    :sass
+      .section
+        margin: 10px
+      .section_header
+        font-weight: 900
+        margin: 5px
+      .section_content
+        margin: 5px
+      .item
+        margin-bottom: 5px
   %body
     =@body
