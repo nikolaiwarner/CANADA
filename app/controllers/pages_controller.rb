@@ -1,14 +1,11 @@
-
 class PagesController < ApplicationController
 
-  before_filter :administrator?, :except => "home"
+  before_filter :administrator?, :except => {"home", "events"}
 	
 	
   def home
-  
-  
+    
   end	
-
 
 
 	def create
@@ -22,13 +19,15 @@ class PagesController < ApplicationController
 	end
 
 	
-	
 	def send_newsletter
     ApplicationMailer.deliver_send_weekly_newsletter(:body => params[:body])
     flash[:notice] = 'Email was delivered!!!!'
     redirect_to '/'
 	end
-	
-	
-	
+
+
+	def events
+    @events = Event.find(:all, :conditions => {:start_datetime => 1.year.ago .. 1.year.from_now})
+	end
+
 end

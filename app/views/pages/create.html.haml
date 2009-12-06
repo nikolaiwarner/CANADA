@@ -11,7 +11,7 @@
         EVENTS
       .section_content{ :style => "margin: 5px" }
         - @events.each do |event|
-          .item{ :style => "margin-bottom: 5px" }
+          .item{ :style => "margin: 5px" }
             = event.time_string + " <br/> " if event.time_string
             = event.title
             = "@ " + event.location.title + " (" + event.location.address + ")" if event.location
@@ -21,7 +21,7 @@
         Coming Soon:
       .section_content{ :style => "margin: 5px" }
         - @coming_events.each do |event|
-          .item{ :style => "margin-bottom: 5px" }
+          .item{ :style => "margin: 5px" }
             = event.title
             = "@ " + event.location.title + " (" + event.location.address + ")" if event.location
             = event.time_string if event.time_string
@@ -31,7 +31,7 @@
           ANNOUNCEMENTS
         .section_content{ :style => "margin: 5px" }
           - @announcements.each_with_index do |announcement, i|
-            .item{ :style => "margin-bottom: 5px" }
+            .item{ :style => "margin: 5px" }
               = (i + 1).to_s + ") " + announcement.title
               %br
               = announcement.description
@@ -41,7 +41,7 @@
           HACKS OF THE WEEK
         .section_content{ :style => "margin: 5px" }
           - @hacks.each do |hack|
-            .item{ :style => "margin-bottom: 5px" }
+            .item{ :style => "margin: 5px" }
               = hack.title
               %br
               = hack.description
@@ -51,12 +51,12 @@
           RESOURCES
         .section_content{ :style => "margin: 5px" }
           - @resources.each do |resource|
-            .item{ :style => "margin-bottom: 5px" }
+            .item{ :style => "margin: 5px" }
               = resource.title + ": " + resource.link
               = " - " + resource.description if resource.description
     .section{ :style => "margin: 10px" }
       .section_header{ :style => "margin: 10px; font-weight: 900;" }
         QUESTIONS/COMMENTS/SUBMISSIONS
       .section_content
-        .item{ :style => "margin-bottom: 5px" }
+        .item{ :style => "margin: 5px" }
           Have an announcement, event, idea, or hack to submit for the next newsletter? Email nick@nwarner.com
