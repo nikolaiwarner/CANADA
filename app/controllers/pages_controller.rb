@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  require "ri_cal"
 
   before_filter :administrator?, :except => {"home", "events"}
 	
