@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_filter :administrator?, :except => {"home"}
+  before_filter :administrator?, :except => "home"
 	
 	
   def home
