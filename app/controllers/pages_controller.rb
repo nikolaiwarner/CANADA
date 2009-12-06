@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
-  require "ri_cal"
 
-  before_filter :administrator?, :except => {"home", "events"}
+  before_filter :administrator?, :except => {"home"}
 	
 	
   def home
@@ -26,9 +25,5 @@ class PagesController < ApplicationController
     redirect_to '/'
 	end
 
-
-	def events
-    @events = Event.find(:all, :conditions => {:start_datetime => 1.year.ago .. 1.year.from_now})
-	end
 
 end

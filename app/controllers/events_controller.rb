@@ -1,6 +1,46 @@
 class EventsController < ApplicationController
 
-  before_filter :administrator?
+  before_filter :administrator?, :except => "feed"
+
+
+
+
+
+	def feed
+    @events = Event.find(:all, :conditions => {:start_datetime => 1.year.ago .. 1.year.from_now})
+    
+    
+    icalendar = RiCal.Calendar do |ical|
+      @events.each do |event|
+        if event.start_datetime
+          ical.event do |e|
+            e.summary     = event.title
+            e.description = event.description
+            e.dtstart     = Time.parse(event.start_datetime.to_s).getutc
+            if event.end_datetime
+              e.dtend     = Time.parse(event.end_datetime.to_s).getutc
+            else
+              e.dtend     = Time.parse((event.start_datetime + 1.hour).to_s).getutc
+            end
+            e.location    = event.location.title if event.location
+            e.url         = "http://collexion.net"
+          end
+        end
+      end
+    end
+    @ics = icalendar
+    
+    
+    respond_to do |format|
+      format.ics { render :text => @ics, :content_type => "text/calendar" }
+      #format.json
+      #format.xml  { render :xml => @event }
+    end
+    
+	end
+
+
+
 
 
 

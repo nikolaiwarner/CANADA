@@ -5,7 +5,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/home',  :controller => "pages", :action => "home"
   map.connect '/new',   :controller => "pages", :action => "create"
   map.connect '/send_newsletter',   :controller => "pages", :action => "send_newsletter"
-
+  
+  map.connect '/events/feed.:format', :controller => "events", :action => "feed"
   
   map.resources :organizations
   map.resources :resources
