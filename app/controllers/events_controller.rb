@@ -16,11 +16,11 @@ class EventsController < ApplicationController
           ical.event do |e|
             e.summary     = event.title
             e.description = event.description
-            e.dtstart     = Time.parse(event.start_datetime.to_s)
+            e.dtstart     = Time.parse(event.start_datetime.to_s).getutc
             if event.end_datetime
-              e.dtend     = Time.parse(event.end_datetime.to_s)
+              e.dtend     = Time.parse(event.end_datetime.to_s).getutc
             else
-              e.dtend     = Time.parse((event.start_datetime + 1.hour).to_s)
+              e.dtend     = Time.parse((event.start_datetime + 1.hour).to_s).getutc
             end
             e.location    = event.location.title + " " + event.location.address if event.location
             e.url         = "http://collexion.net"
