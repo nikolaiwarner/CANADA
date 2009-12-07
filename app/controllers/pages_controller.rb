@@ -9,8 +9,8 @@ class PagesController < ApplicationController
 
 
 	def create
-    @events = Event.find(:all, :conditions => {:start_datetime => 1.second.ago .. 2.weeks.from_now})
-    @coming_events = Event.find(:all, :conditions => {:start_datetime => 2.weeks.from_now .. 2.months.from_now})
+    @events = Event.find(:all, :conditions => {:start_datetime => 1.second.ago .. 2.weeks.from_now}, :order => "start_datetime ASC")
+    @coming_events = Event.find(:all, :conditions => {:start_datetime => 2.weeks.from_now .. 2.months.from_now}, :order => "start_datetime ASC")
     
     @announcements = Announcement.find(:all, :conditions => {:start_datetime => 1.month.ago .. 1.months.from_now})
     @hacks = Hack.find(:all, :conditions => {:created_at => 2.weeks.ago .. 2.weeks.from_now})
