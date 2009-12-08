@@ -24,7 +24,7 @@
           .item{ :style => "margin: 5px" }
             = event.title
             = "@ " + event.location.title + " (" + event.location.address + ")" if event.location
-            = event.time_string if event.time_string
+            = " - " + event.time_string if event.time_string
     - unless @announcements.count.zero?
       .section{ :style => "margin: 10px" }
         .section_header{ :style => "margin: 10px; font-weight: 900;" }
