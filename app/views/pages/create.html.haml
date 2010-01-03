@@ -2,61 +2,66 @@
   %input{:type => "submit", :value => "Send Newsletter Email"}
   %br
   %textarea{:rows => "40", :cols => "100", :name => "body"}
-    .section{ :style => "margin: 10px" }
-      .section_header{ :style => "margin: 10px; font-weight: 900; font-size:20px; font-family: 'Helvetica Nue', Helvetica, Arial, sans-serif;" }
+    .section
+      .section_header
         The Collexion Newsletter - 
         = Date.today.to_s(:db)
     .section{ :style => "margin: 10px" }
-      .section_header{ :style => "margin: 10px; font-weight: 900;" }
+      .section_header
         EVENTS
-      .section_content{ :style => "margin: 5px" }
+      .section_content
         - @events.each do |event|
-          .item{ :style => "margin: 10px" }
-            .title{ :style => "font-weight: 900;" }= event.title
+          .item
+            .title
+              = event.title
             = event.time_string + " <br/> " if event.time_string
             = "@ " + event.location.title + " (" + event.location.address + ")" if event.location
             %br
             = event.description
-      .section_header{ :style => "margin: 10px; font-weight: 900;" }
+      .section_header
         Coming Soon:
-      .section_content{ :style => "margin: 5px" }
+      .section_content
         - @coming_events.each do |event|
-          .item{ :style => "margin: 5px" }
-            = event.title
+          .item
+            .title
+              = event.title
             = "@ " + event.location.title + " (" + event.location.address + ")" if event.location
             = " - " + event.time_string if event.time_string
     - unless @announcements.count.zero?
-      .section{ :style => "margin: 10px" }
-        .section_header{ :style => "margin: 10px; font-weight: 900;" }
+      .section
+        .section_header
           ANNOUNCEMENTS
-        .section_content{ :style => "margin: 5px" }
+        .section_content
           - @announcements.each_with_index do |announcement, i|
-            .item{ :style => "margin: 10px" }
-              = (i + 1).to_s + ") " + announcement.title
+            .item
+              .title
+                = (i + 1).to_s + ") " + announcement.title
               %br
               = announcement.description
     - unless @hacks.count.zero?
-      .section{ :style => "margin: 10px" }
-        .section_header{ :style => "margin: 10px; font-weight: 900;" }
+      .section
+        .section_header
           HACKS OF THE WEEK
-        .section_content{ :style => "margin: 5px" }
+        .section_content
           - @hacks.each do |hack|
-            .item{ :style => "margin: 10px" }
-              = hack.title
+            .item
+              .title
+                = hack.title
               %br
               = hack.description
     - unless @resources.count.zero?
-      .section{ :style => "margin: 10px" }
-        .section_header{ :style => "margin: 10px; font-weight: 900;" }
+      .section
+        .section_header
           RESOURCES
-        .section_content{ :style => "margin: 5px" }
+        .section_content
           - @resources.each do |resource|
-            .item{ :style => "margin: 5px" }
-              = resource.title + ": " + resource.link
+            .item
+              .title
+                = resource.title + ": " + resource.link
               = " - " + resource.description if resource.description
-    .section{ :style => "margin: 10px" }
-      .section_header{ :style => "margin: 10px; font-weight: 900;" }
+    .section
+      .section_header
         QUESTIONS/COMMENTS/SUBMISSIONS
       .section_content
-        .item{ :style => "margin: 5px" }
+        .item
           Have an announcement, event, idea, or hack to submit for the next newsletter? Email nick@nwarner.com
